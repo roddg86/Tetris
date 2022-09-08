@@ -28,8 +28,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     /* функция обработки щелчка на кнопку btnNewGame */
-    private fun onBtnNewGameClick(view: View){
-        /* применить намерение для запуска действия */
+    private fun onBtnNewGameClick(view: View) {
+        /* применить намерение для запуска действия
+        this - это текущий контекст, фактически это текущее действие MainActivity, передается первым аргументом
+        */
         val intent = Intent(this, GameActivity::class.java)
         startActivity(intent)
     }
