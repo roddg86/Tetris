@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.bignerdranch.android.tetris.storage.AppPreferences
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     var tvHighScore: TextView? = null
@@ -38,12 +40,13 @@ class MainActivity : AppCompatActivity() {
 
     /* функция обработки щелчка на кнопку reset score */
     private fun onBtnResetScoreClick(view: View){
-
+        val preferences = AppPreferences(this)
+        preferences.clearHighScore()
     }
 
     /* функция обработки щелчка на кнопку exit */
     private fun onBtnExitClick(view: View){
         /* метод завержает программу если в аргумент передается число 0 */
-        System.exit(0)
+        exitProcess(0)
     }
 }
