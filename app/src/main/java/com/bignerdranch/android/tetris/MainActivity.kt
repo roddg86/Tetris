@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.bignerdranch.android.tetris.storage.AppPreferences
+import com.google.android.material.snackbar.Snackbar
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         /* слушатель устанавливает функцию которая вызывается при щелчке на представлении */
         btnNewGame.setOnClickListener(this::onBtnNewGameClick)
+        btnResetScore.setOnClickListener(this::onBtnResetScoreClick)
     }
 
     /* функция обработки щелчка на кнопку btnNewGame */
@@ -42,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     private fun onBtnResetScoreClick(view: View){
         val preferences = AppPreferences(this)
         preferences.clearHighScore()
+        Snackbar.make(view,"Score successfully reset", Snackbar.LENGTH_SHORT).show()
+        tvHighScore?.text = "High score: ${preferences.getHighScore()}"
     }
 
     /* функция обработки щелчка на кнопку exit */
