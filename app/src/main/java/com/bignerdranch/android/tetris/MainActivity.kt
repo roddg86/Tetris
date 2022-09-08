@@ -1,5 +1,6 @@
 package com.bignerdranch.android.tetris
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -27,5 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     /* функция обработки щелчка на кнопку btnNewGame */
-    private fun onBtnNewGameClick(view: View){}
+    private fun onBtnNewGameClick(view: View){
+        /* применить намерение для запуска действия */
+        val intent = Intent(this, GameActivity::class.java)
+        startActivity(intent)
+    }
 }
