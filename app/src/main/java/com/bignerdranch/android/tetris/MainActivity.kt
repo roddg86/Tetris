@@ -35,4 +35,15 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, GameActivity::class.java)
         startActivity(intent)
     }
+
+    /* функция обработки щелчка на кнопку reset score */
+    private fun onBtnResetScoreClick(view: View){
+
+    }
+
+    /* функция обработки щелчка на кнопку exit */
+    private fun onBtnExitClick(view: View){
+        /* метод завержает программу если в аргумент передается число 0 */
+        System.exit(0)
+    }
 }
