@@ -1,5 +1,7 @@
 package com.bignerdranch.android.tetris.models
 
+import android.graphics.Point
+import com.bignerdranch.android.tetris.constants.CellConstants
 import com.bignerdranch.android.tetris.constants.FieldConstants
 import com.bignerdranch.android.tetris.helpers.array2dOfByte
 import com.bignerdranch.android.tetris.storage.AppPreferences
@@ -15,6 +17,30 @@ class AppModel {
         FieldConstants.ROW_COUNT.value,
         FieldConstants.COLUMN_COUNT.value
     )
+
+    private fun validTranslation(position: Point, shape: Array<ByteArray>): Boolean {
+        return if (position.y < 0 || position.x < 0) {
+            false
+        } else if (position.y + shape.size > FieldConstants.ROW_COUNT.value) {
+            false
+        } else if (position.x + shape[0].size > FieldConstants.COLUMN_COUNT.value) {
+            false
+        } else {
+            // Check all the items in field:
+            for (i in 0 until shape.size) {
+                for (j in 0 until shape[i].size) {
+
+                    val y = position.y + i
+                    val x = position.x + j
+
+                    if (CellConstants.EMPTY.value != shape[i][j] && CellConstants.EMPTY.value != field[y][x]) {
+                        return false
+                    }
+                }
+            }
+            true
+        }
+    }
 
     fun setPreferences(preferences: AppPreferences?) {
         this.preferences = preferences
