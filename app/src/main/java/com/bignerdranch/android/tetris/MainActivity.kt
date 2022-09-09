@@ -1,5 +1,6 @@
 package com.bignerdranch.android.tetris
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         /* слушатель устанавливает функцию которая вызывается при щелчке на представлении */
         btnNewGame.setOnClickListener(this::onBtnNewGameClick)
         btnResetScore.setOnClickListener(this::onBtnResetScoreClick)
+        btnExit.setOnClickListener(this::onBtnExitClick)
+
+        updateHighScore()
     }
 
     /* функция обработки щелчка на кнопку btnNewGame */
@@ -41,10 +45,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     /* функция обработки щелчка на кнопку reset score */
+    @SuppressLint("SetTextI18n")
     private fun onBtnResetScoreClick(view: View){
         val preferences = AppPreferences(this)
         preferences.clearHighScore()
         Snackbar.make(view,"Оценка успешно сброшена", Snackbar.LENGTH_SHORT).show()
+        tvHighScore?.text = "High score: ${preferences.getHighScore()}"
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun updateHighScore() {
+        val preferences = AppPreferences(this)
         tvHighScore?.text = "High score: ${preferences.getHighScore()}"
     }
 
