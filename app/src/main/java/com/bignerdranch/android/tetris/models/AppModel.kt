@@ -30,6 +30,12 @@ class AppModel {
         }
     }
 
+    private fun boostScore() {
+        score += 10
+        if (score > preferences?.getHighScore() as Int)
+            preferences?.saveHighScore(score)
+    }
+
     fun isGameOver(): Boolean {
         return currentState == Statuses.OVER.name
     }
