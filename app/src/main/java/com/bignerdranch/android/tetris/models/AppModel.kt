@@ -30,6 +30,18 @@ class AppModel {
         }
     }
 
+    fun isGameOver(): Boolean {
+        return currentState == Statuses.OVER.name
+    }
+
+    fun isGameActive(): Boolean {
+        return currentState == Statuses.ACTIVE.name
+    }
+
+    fun isGameAwaitingStart(): Boolean {
+        return currentState == Statuses.AWAITING_START.name
+    }
+
     enum class Statuses {
         AWAITING_START, ACTIVE, OVER
     }
