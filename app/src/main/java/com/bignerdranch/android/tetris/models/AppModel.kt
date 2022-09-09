@@ -18,6 +18,11 @@ class AppModel {
         FieldConstants.COLUMN_COUNT.value
     )
 
+    private fun moveValid(position: Point, frameNumber: Int?): Boolean {
+        val shape: Array<ByteArray>? = currentBlock?.getShape(frameNumber as Int)
+        return validTranslation(position, shape as Array<ByteArray>)
+    }
+
     private fun validTranslation(position: Point, shape: Array<ByteArray>): Boolean {
         return if (position.y < 0 || position.x < 0) {
             false
